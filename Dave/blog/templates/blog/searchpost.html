@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .blog_posts{
+            display: flex;
+        }
+        .blog_cont{
+            width: 33.333333%;
+        }
+    </style>
+</head>
+<body>
+    <br>
+        <br>
+        {% if post|length < 1 %}
+
+        <div>
+          <p>Your search - <br><strong>{{title|truncatechars:85}}</strong>- did not match any term.</p>
+          <h5>Suggestions:</h5>
+          <ul>
+            <li class="ml-5">Make sure that all words are spelled correctly.</li>
+            <li class="ml-5">Try different keywords.</li>
+            <li class="ml-5">Try more general keywords.</li>
+            <li class="ml-5">Try fewer keywords.</li>
+          </ul>
+        </div>
+        {% else %}
+        <div class="row ml-1">
+          <p href="#" style="text-decoration:none; color:black;">
+          <h4>Search results for "{{title}}"</h4>
+          </p>
+        </div>
+        {% endif %}</div>
+        <br>
+        <form action="/search" method="GET">
+            <input type="text" placeholder="type here" name="q"> <button type="submit">SUBMIT</button>
+            </form> 
+    <div class="blog_posts">
+        {% for data in post %}
+        {% if forloop.counter0|divisibleby:2 %} <div class="row"> {%  endif %}
+        <div class="blog_cont">
+            
+            <a style="color: black;" href="{% url 'blog:detail' slug=data.Slug %}"><h1>{{ data.Title }}</h1></a>
+            <span>{{data.Date}}</span><br>
+            <img width="100px" height="100px" src='{{ data.Image.url }}' >
+            <p>{{data.Tag}}</p>
+        
+        </div>
+        {%  if forloop.counter|divisibleby:2 or forloop.last %}</div><br>{%  endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}
