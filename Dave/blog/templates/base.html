@@ -90,12 +90,13 @@
               <h2 id="head3">IDEA?</h2>
           </div>
           <div class="contactin">
-              <form action="/" method="POST" id="contact-form">
+              <form action="/contact-me/" method="POST" id="contact-form">
               {% csrf_token %}
               <input type="text" name='name' placeholder="Enter your name"><br>
               <input type="email" name='email' placeholder="Email Address"><br>
               <input type="phone" name='phone' placeholder="Mobile Number"><br>
               <input type="text" name='message' placeholder="Query"><br>
+              <input type="hidden" name="url" id="inp-url">
               <button class="button_submit" type="submit" onclick="submitForm()">Submit</button>
               </form>
           </div>
@@ -104,7 +105,19 @@
       </div>
   </section>
 </div>
+<script>
 
+function submitForm() {
+    let x = window.location.href.split("/")[3];
+    let y = window.location.href.split("/")[4];
+    let inp = document.getElementById("inp-url");
+    if (y === "") {
+        inp.setAttribute("value", `/${x}`);
+    }
+    inp.setAttribute("value", `/${x}/${y}`);
+}
+
+</script>
 
 </body>
 

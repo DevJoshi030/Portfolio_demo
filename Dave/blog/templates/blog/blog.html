@@ -37,7 +37,7 @@
               </form>
             </div>
             <div class="bg_post">
-              {% for data in posts %} {% if forloop.counter0|divisibleby:2 %}
+              {% for data in posts %} {% if forloop.counter0|divisibleby:3 %}
               <div class="row">
                 {% endif %}
                 <div class="blog_card">
@@ -72,7 +72,7 @@
                     </div>
                   </a>
                 </div>
-                {% if forloop.counter|divisibleby:2 or forloop.last %}
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
               </div>
               <br />{% endif %} {% endfor %}
             </div>
@@ -123,29 +123,35 @@
                 <!-- <li><a href="?page=1"  class="page-link" >First</a></li> -->
                 <div class="prev_icon">
                   <li class="prev">
-                    <a href="?page={{posts.previous_page_number}}" class="page-link"><img src="{% static 'images/page2.svg' %}" alt=""></a>
+                    <a
+                      href="?page={{posts.previous_page_number}}"
+                      class="page-link"
+                      ><img src="{% static 'images/page2.svg' %}" alt=""
+                    /></a>
                   </li>
                 </div>
-                {% endif %} 
+                {% endif %}
                 <div class="page_number">
-                  {% for num in posts.paginator.page_range %} 
-                  <ul >
+                  {% for num in posts.paginator.page_range %}
+                  <ul>
                     {% if posts.number == num %}
-                      <li class="active page-item">
-                        <a class="page-link active-page">{{num}}</a>
-                      </li>
-                      {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
-                      <li class="page-item">
-                        <a class="page-link" href="?page={{num}}">{{num}}</a>
-                      </li>
-                      {% endif %} 
-                    </ul>
-                  {% endfor %} 
+                    <li class="active page-item">
+                      <a class="page-link active-page">{{num}}</a>
+                    </li>
+                    {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{num}}">{{num}}</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                  {% endfor %}
                 </div>
                 {% if posts.has_next %}
                 <div class="next_icon">
                   <li class="next">
-                    <a href="?page={{posts.next_page_number}}" class="page-link"><img src="{% static 'images/page1.svg' %}" alt=""></a>
+                    <a href="?page={{posts.next_page_number}}" class="page-link"
+                      ><img src="{% static 'images/page1.svg' %}" alt=""
+                    /></a>
                   </li>
                 </div>
                 <!-- <li class="page-item"><a href="?page={{posts.paginator.num_pages}}" class="page-link">Last</a></li> -->

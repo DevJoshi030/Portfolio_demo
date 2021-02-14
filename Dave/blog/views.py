@@ -45,6 +45,7 @@ def portfolioView(request):
 # class PortfolioView(TemplateView):
 #     template_name = "blog/portfolio/photography.html"
 
+
 def productsView(request):
     posts = Blog.objects.all()
     context = {
@@ -53,6 +54,7 @@ def productsView(request):
     return render(request, 'blog/products.html', context)
 # class PortfolioView(TemplateView):
 #     template_name = "blog/portfolio/photography.html"
+
 
 class ConnectView(TemplateView):
     template_name = "blog/letsconnect.html"
@@ -273,12 +275,15 @@ def BlogDetail(request, slug):
 
 
 def contactUs(request):
+    print("Hello")
     post = Blog.objects.all()
+    url = ''
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
+        url = request.POST['url']
         if len(email) < 3 or len(phone) < 10 or len(message) < 4:
             messages.error(request, 'Please fill the form correctly.')
         else:
@@ -287,11 +292,11 @@ def contactUs(request):
         contact = Contact(name=name, email=email,
                           phone_no=phone, message=message)
         contact.save()
-        return redirect('/')
+        return HttpResponseRedirect(url)
     context = {
         'post': post
     }
-    return render(request, './blog/home.html', context)
+    return HttpResponseRedirect(url)
 
 
 def letsConnect(request):
@@ -336,4 +341,15 @@ def searchPost(request):
         'post': post,
         'title': f'{query}',
     }
+
+    if request.method == 'POST':
+        subscriberemail = request.POST.get('subscriberemail')
+        if len(subscriberemail) < 8:
+            messages.error(request, 'Please fill the form correctly.')
+        else:
+            messages.success(
+                request, 'Your message has been successfully sent.')
+            subscribenews = SubscribeNewsletter(
+                subscriberemail=subscriberemail)
+            subscribenews.save()
     return render(request, './blog/searchpost.html', parms)

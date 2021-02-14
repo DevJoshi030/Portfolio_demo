@@ -8,9 +8,9 @@ app_name = 'blog'
 urlpatterns = [
 
     # Main Navbar
-    path('', contactUs, name='contact'),
+    path('contact-me/', contactUs, name='contact'),
     # path('blog/subscribe/',subscribeNews, name='subscribenews'),
-    path('home/', HomeView.as_view(), name='home'),
+    path('', HomeView.as_view(), name='home'),
     # path('expertise/digital_marketing',views.ExpertiseView.as_view(), name='expertise'),
     path('expertise/digital_marketing/', expertiseView, name='expertise'),
     # path('agency/',AgencyView.as_view(),name='agency'),

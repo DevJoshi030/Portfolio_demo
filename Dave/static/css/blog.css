@@ -44,6 +44,9 @@
 }
 
 .bg_post {
+  /* display: flex; */
+}
+.row{
   display: flex;
 }
 .bg_post_mobile {

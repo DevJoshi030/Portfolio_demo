@@ -141,6 +141,14 @@ p {
   margin-left: 0.7vw;
   margin-right: 0.7vw;
 }
+
+.searchbtn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
 .inp,
 .bgs_img_s {
   padding-top: 2vw;
@@ -161,6 +169,9 @@ p {
   margin-right: 0.7vw;
 }
 
+.search_form{
+  display: flex;
+}
 .top_search {
   outline: none;
   border: transparent;

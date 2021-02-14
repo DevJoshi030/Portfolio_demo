@@ -436,12 +436,13 @@
                       <h2 id="head3">IDEA?</h2>
                   </div>
                   <div class="contactin">
-                    <form action="" method="POST" id="contact-form">
+                    <form action="/contact-me/" method="POST" id="contact-form">
                       {% csrf_token %}
                       <input type="text" name='name' placeholder="Enter your name"><br>
                       <input type="email" name='email' placeholder="Email Address"><br>
                       <input type="phone" name='phone' placeholder="Mobile Number"><br>
                       <input type="text" name='message' placeholder="Query"><br>
+                      <input type="hidden" name="url" id="inp-url">
                       <button class="button_submit" type="submit" onclick="submitForm()">Submit</button>
                     </form>
                   </div>
@@ -611,10 +612,15 @@
    // Usually the form name is not repeated
    // but duplicate names are possible in HTML
    // Therefore to work around the issue, enforce the correct index
-   var frm = document.getElementsById('contact-form')[0];
-   frm.submit(); // Submit the form
-   frm.reset();  // Reset all form data
-   return false; // Prevent page refresh
+  //  var frm = document.getElementsById('contact-form')[0];
+   let x = window.location.href.split("/")[3];
+    let inp = document.getElementById("inp-url");
+
+    inp.setAttribute("value", `/${x}`);
+    console.log(inp.getAttribute("value"))
+  //  frm.submit(); // Submit the form
+  //  frm.reset();  // Reset all form data
+  //  return false; // Prevent page refresh
    
 
         $(document).on('click', 'ul li', function(){

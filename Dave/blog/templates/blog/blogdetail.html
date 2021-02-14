@@ -109,16 +109,21 @@
             </div>
             <div class="bgs_contact_category">
               <div class="bg_search">
-                <div class="inp">
-                  <input
-                    class="top_search"
-                    type="text"
-                    placeholder="Type here....."
-                  />
-                </div>
-                <div class="bgs_img_s">
-                  <img src="{% static 'images/search.svg' %}" alt="" />
-                </div>
+                <form class="search_form" action="/search" method="GET">
+                  <div class="inp">
+                    <input
+                      class="top_search"
+                      type="text"
+                      placeholder="Type here....."
+                      name="q"
+                    />
+                  </div>
+                  <div class="bgs_img_s">
+                    <button class="searchbtn" type="submit">
+                      <img src="{% static 'images/search.svg' %}" alt="" />
+                    </button>
+                  </div>
+                </form>
               </div>
               <!-- <div class="custom-select" style="width:200px;">
                         <select>
@@ -130,44 +135,7 @@
                         </select>
                       </div> -->
             </div>
-            <div class="social_media">
-              <div id="share_icon">
-                <button onclick="shareMedia()">
-                  <p><span><img src="{% static 'images/share.svg' %}" alt=""></span></p>
-                </button>
-              </div>
-              <div id="sharing_options">
-                <i class="far fa-times-circle" onclick="shareMedia()" style="color: white;"></i>
-                <p>
-                <a href=""><span><img src="{% static 'images/fb.svg' %}" alt="">{% post_to_facebook %}</a></span></p>
-                <p>
-                  <a href="https://facebook.com/sharer/sharer.php?u=http://0e86591c183a.ngrok.io/blog/{{blog.Slug}}/" target="blank">dwawadw</a>
-                </p>
-                <p>
-                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://0e86591c183a.ngrok.io/blog/{{blog.Slug}}/&title='dassssadasda'&summary='dasdasdasd'&source='http://0e86591c183a.ngrok.io/blog/{{blog.Slug}}/'">
-                    Share on Linkedin
-                    </a>
-                </p>
-                <p>
-                <a href=""><span><img src="{% static 'images/twitter.svg' %}" alt="">{% post_to_twitter object_or_url "" %}</a></span></p>
-                <p>
-                <a href=""><span><img src="{% static 'images/gplus.svg' %}" alt="">{% post_to_gplus  "" %}</a></span></p>
-                <p>
-                <a href=""><span><img src="{% static 'images/linkedin.svg' %}" alt="">{% post_to_linkedin %}</a></span></p>
-                <p>
-                <a href=""><span><img src="{% static 'images/mail.png' %}" alt="">{% send_email object.title "" %}</a></span></p>
-                <p>
-                <a href=""><span><img src="{% static 'images/reddit.png' %}" alt="">{% post_to_reddit  "http://28056feddc44.ngrok.io/blog/{{blog.Slug}}"  %}</a></span></p>
-                <p>
-                <a href=""><span><img src="{% static 'images/telegram.svg' %}" alt="">{% post_to_telegram object_or_url "" %}</a></span></p>
-                <p>
-                <a href=""><span><img src="{% static 'images/wp.svg' %}" alt="">{% post_to_whatsapp  "" %}</a></span></p>
-                <p>
-                <a href=""><span>{% save_to_pinterest object_or_url %}</a></span></p>
-                <p>
-                <a href=""><span>{% add_pinterest_script %}</a></span></p>
-              </div>
-            </div>
+           
 
             <div class="bgs_contact_latest_blog">
               <h1 id="bgs_blog_heading">LATEST BLOGS</h1>
